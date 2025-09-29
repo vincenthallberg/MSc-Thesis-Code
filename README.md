@@ -26,9 +26,9 @@ The preprocessing stage includes:
   Candidate features undergo correlation pruning, PLS-based dimensionality reduction, and bootstrapped stability selection to handle multicollinearity.  
 
 Mathematically, given a dataset \( (X, y) \), we select a feature subset \( S \subseteq \{1, \ldots, p\} \) that maximizes predictive stability under repeated subsampling:
-\[
+$$
 S = \arg\max_{S'} \; \Pr_{b \sim \text{Bootstrap}} \big[ j \in S' \big],
-\]
+$$
 where stability is defined as the frequency with which a feature is retained across bootstrap replicates.
 
 ---
