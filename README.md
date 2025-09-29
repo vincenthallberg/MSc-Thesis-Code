@@ -26,9 +26,9 @@ The preprocessing stage includes:
   Candidate features undergo correlation pruning, PLS-based dimensionality reduction, and bootstrapped stability selection to handle multicollinearity.  
 
 Mathematically, given a dataset \( (X, y) \), we select a feature subset \( S \subseteq \{1, \ldots, p\} \) that maximizes predictive stability under repeated subsampling:
-$
+\[
 S = \arg\max_{S'} \; \Pr_{b \sim \text{Bootstrap}} \big[ j \in S' \big],
-$
+\]
 where stability is defined as the frequency with which a feature is retained across bootstrap replicates.
 
 ---
@@ -40,15 +40,15 @@ We evaluate a range of models implemented in [`ml_large_data`](./large_data_stud
 - **Baselines:** Logistic Regression, Naive Bayes, and a Bayesian Neural Network (Bayes by Backprop) [`baselines.py`](./large_data_study/ml_large_data/baselines.py).  
 - **Tree boosting models:** LightGBM, XGBoost, and CatBoost with hyperparameters tuned using [Optuna](https://optuna.org/) [`tuning.py`](./large_data_study/ml_large_data/tuning.py).  
 - **Bayesian Neural Network:** Implemented in [`bnn.py`](./large_data_study/ml_large_data/bnn.py), following Blundell et al. (2015), optimizing the evidence lower bound:
-  $
+  \[
   \mathcal{L} = \mathbb{E}_{q(w)}\big[-\log p(y \mid x, w)\big] + \text{KL}\big(q(w)\,\|\,p(w)\big).
-  $
+  \]
 
 ### Hyperparameter Optimization
 For boosting models, we optimize trial-specific parameters \( \theta \) to maximize validation ROC AUC:
-$
+\[
 \theta^* = \arg\max_{\theta \in \mathcal{H}} \; \text{ROC-AUC}(f_\theta(X_{\text{val}}), y_{\text{val}}).
-$
+\]
 
 ### Metrics
 Performance is evaluated using:  
